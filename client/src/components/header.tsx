@@ -29,6 +29,16 @@ export default function Header() {
                 Archive
               </button>
             </Link>
+            <Link href="/about" data-testid="link-nav-about">
+              <button
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  location === "/about" ? "text-foreground" : "text-muted-foreground"
+                }`}
+                data-testid="button-nav-about"
+              >
+                About
+              </button>
+            </Link>
           </nav>
         </div>
       </div>

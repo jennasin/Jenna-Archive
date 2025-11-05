@@ -5,17 +5,22 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import PageTransition from "@/components/page-transition";
 import Gallery from "@/pages/gallery";
 import ItemDetail from "@/pages/item-detail";
+import About from "@/pages/about";
 import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Gallery} />
-      <Route path="/item/:id" component={ItemDetail} />
-      <Route component={NotFound} />
-    </Switch>
+    <PageTransition>
+      <Switch>
+        <Route path="/" component={Gallery} />
+        <Route path="/about" component={About} />
+        <Route path="/item/:id" component={ItemDetail} />
+        <Route component={NotFound} />
+      </Switch>
+    </PageTransition>
   );
 }
 
