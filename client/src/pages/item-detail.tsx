@@ -1,12 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { useRoute, Link } from "wouter";
-import { GalleryItem } from "@shared/schema";
-import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import { GalleryItem, updateGalleryItemSchema } from "@shared/schema";
+import { ArrowLeft, ChevronLeft, ChevronRight, Edit, Save, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { useState } from "react";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export default function ItemDetail() {
   const [, params] = useRoute("/item/:id");
   const itemId = params?.id;
+  const [isEditing, setIsEditing] = useState(false);
+  const { toast } = useToast();
 
   const { data: items } = useQuery<GalleryItem[]>({
     queryKey: ["/api/gallery"],
@@ -16,6 +26,47 @@ export default function ItemDetail() {
     queryKey: ["/api/gallery", itemId],
     enabled: !!itemId,
   });
+
+  const form = useForm({
+    resolver: zodResolver(updateGalleryItemSchema),
+    defaultValues: {
+      title: item?.title || "",
+      description: item?.description || "",
+      mediaUrl: item?.mediaUrl || "",
+    },
+    values: {
+      title: item?.title || "",
+      description: item?.description || "",
+      mediaUrl: item?.mediaUrl || "",
+    },
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: async (data: { title?: string; description?: string; mediaUrl?: string }) => {
+      if (!itemId) throw new Error("No item ID");
+      return await apiRequest(`/api/gallery/${itemId}`, "PATCH", data);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/gallery"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/gallery", itemId] });
+      setIsEditing(false);
+      toast({
+        title: "Success",
+        description: "Item updated successfully",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to update item",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const onSubmit = (data: { title?: string; description?: string; mediaUrl?: string }) => {
+    updateMutation.mutate(data);
+  };
 
   if (isLoading || !item) {
     return (
@@ -45,37 +96,151 @@ export default function ItemDetail() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 md:px-8 py-8 md:py-16">
         <div className="max-w-5xl mx-auto">
-          <Link href="/" data-testid="link-back">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="mb-8 -ml-2"
-              data-testid="button-back"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Gallery
-            </Button>
-          </Link>
+          <div className="flex items-center justify-between mb-8">
+            <Link href="/" data-testid="link-back">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="-ml-2"
+                data-testid="button-back"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Gallery
+              </Button>
+            </Link>
 
-          <h1
-            className="text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-tight"
-            data-testid="text-item-title"
-          >
-            {item.title}
-          </h1>
-
-          <div className="mb-12">
-            <MediaViewer item={item} />
+            {!isEditing ? (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsEditing(true)}
+                data-testid="button-edit"
+              >
+                <Edit className="w-4 h-4 mr-2" />
+                Edit
+              </Button>
+            ) : (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  setIsEditing(false);
+                  form.reset();
+                }}
+                data-testid="button-cancel-edit"
+              >
+                <X className="w-4 h-4 mr-2" />
+                Cancel
+              </Button>
+            )}
           </div>
 
-          <div className="prose prose-invert max-w-none">
-            <p
-              className="text-base md:text-lg leading-relaxed text-muted-foreground"
-              data-testid="text-item-description"
-            >
-              {item.description}
-            </p>
-          </div>
+          {isEditing ? (
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                <FormField
+                  control={form.control}
+                  name="title"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Title</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter title..."
+                          {...field}
+                          data-testid="input-title"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Description</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="How does this tie into the theme?..."
+                          rows={6}
+                          {...field}
+                          data-testid="input-description"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="mediaUrl"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Source URL</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter source URL..."
+                          {...field}
+                          data-testid="input-source"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <Button
+                  type="submit"
+                  disabled={updateMutation.isPending}
+                  data-testid="button-save"
+                >
+                  <Save className="w-4 h-4 mr-2" />
+                  {updateMutation.isPending ? "Saving..." : "Save Changes"}
+                </Button>
+              </form>
+            </Form>
+          ) : (
+            <>
+              <h1
+                className="text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-tight"
+                data-testid="text-item-title"
+              >
+                {item.title}
+              </h1>
+
+              <div className="mb-12">
+                <MediaViewer item={item} />
+              </div>
+
+              <div className="prose prose-invert max-w-none mb-8">
+                <p
+                  className="text-base md:text-lg leading-relaxed text-muted-foreground"
+                  data-testid="text-item-description"
+                >
+                  {item.description}
+                </p>
+              </div>
+
+              <div className="border-t border-border pt-6">
+                <p className="text-sm text-muted-foreground font-mono">
+                  <span className="font-medium">Source:</span>{" "}
+                  <a
+                    href={item.mediaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                    data-testid="link-source"
+                  >
+                    {item.mediaUrl}
+                  </a>
+                </p>
+              </div>
+            </>
+          )}
 
           <div className="mt-16 pt-8 border-t border-border flex items-center justify-between gap-4">
             {prevItem ? (
@@ -134,7 +299,7 @@ function MediaViewer({ item }: { item: GalleryItem }) {
 
   if (item.mediaType === "article") {
     return (
-      <div className="relative w-full bg-card border border-card-border rounded-md overflow-hidden">
+      <div className="relative w-full bg-card border border-border rounded-md overflow-hidden">
         <div className="p-6 md:p-8">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center">
