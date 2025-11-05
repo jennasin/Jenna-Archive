@@ -49,42 +49,46 @@ export default function Gallery() {
               };
 
               return (
-                <Link
-                  key={item.id}
-                  href={`/item/${item.id}`}
-                  onClick={(e) => {
-                    if (item.mediaType === "image") {
-                      e.preventDefault();
-                      handleClick();
-                    }
-                  }}
-                  data-testid={`link-item-${item.id}`}
-                >
-                  <div
-                    className="group relative aspect-square overflow-hidden rounded-md bg-card cursor-pointer hover-elevate active-elevate-2 transition-transform duration-300"
-                    data-testid={`card-item-${item.id}`}
+                <div key={item.id}>
+                  <Link
+                    href={`/item/${item.id}`}
+                    onClick={(e) => {
+                      if (item.mediaType === "image") {
+                        e.preventDefault();
+                        handleClick();
+                      }
+                    }}
+                    data-testid={`link-item-${item.id}`}
                   >
-                    <img
-                      src={item.thumbnailUrl}
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                      data-testid={`img-thumbnail-${item.id}`}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <h3
-                          className="text-white font-medium text-lg leading-tight"
-                          data-testid={`text-title-${item.id}`}
-                        >
-                          {item.title}
-                        </h3>
+                    <div
+                      className="group relative aspect-square overflow-hidden rounded-md bg-card cursor-pointer hover-elevate active-elevate-2 transition-transform duration-300"
+                      data-testid={`card-item-${item.id}`}
+                    >
+                      <img
+                        src={item.thumbnailUrl}
+                        alt={item.title}
+                        className="w-full h-full object-cover"
+                        data-testid={`img-thumbnail-${item.id}`}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-0 left-0 right-0 p-6">
+                          <h3
+                            className="text-white font-medium text-lg leading-tight"
+                            data-testid={`text-title-hover-${item.id}`}
+                          >
+                            {item.title}
+                          </h3>
+                        </div>
+                      </div>
+                      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <MediaTypeBadge type={item.mediaType} />
                       </div>
                     </div>
-                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <MediaTypeBadge type={item.mediaType} />
-                    </div>
-                  </div>
-                </Link>
+                  </Link>
+                  <h3 className="mt-3 text-sm font-medium text-foreground" data-testid={`text-title-${item.id}`}>
+                    {item.title}
+                  </h3>
+                </div>
               );
             })}
           </div>
