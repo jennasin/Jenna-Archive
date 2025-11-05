@@ -2,7 +2,7 @@
 
 ## Overview
 
-Machine Flesh Archive is a web-based gallery application exploring the intersection of human bodies and technology. The project presents a curated collection of images, videos, and articles about prosthetics, neural interfaces, and biomechanical enhancement through a dark, gallery-focused interface.
+Machine Flesh Archive is a web-based gallery application by Jenna Singh exploring the intersection of human bodies and technology. The project presents a curated collection of images, videos, and articles about prosthetics, neural interfaces, and biomechanical enhancement through a dark, gallery-focused interface. Users can browse the archive and edit content directly through an intuitive editing interface.
 
 **Tech Stack:**
 - **Frontend**: React with TypeScript, Vite build system
@@ -16,7 +16,8 @@ Machine Flesh Archive is a web-based gallery application exploring the intersect
 
 ## User Preferences
 
-Preferred communication style: Simple, everyday language.
+- Preferred communication style: Simple, everyday language
+- Author: Jenna Singh (displayed in header)
 
 ## System Architecture
 
@@ -25,17 +26,22 @@ Preferred communication style: Simple, everyday language.
 **Component Structure:**
 - Uses React functional components with TypeScript throughout
 - UI components follow the shadcn/ui pattern - Radix UI primitives wrapped with custom styling
-- Page components located in `client/src/pages/`: Gallery (home), ItemDetail, NotFound
-- Layout components: Header (fixed navigation) and Footer
+- Page components located in `client/src/pages/`: Gallery (home), ItemDetail (with edit form), About, NotFound
+- Layout components: Header (fixed navigation with author name) and Footer (removed)
 - Component aliases configured for clean imports (`@/components`, `@/hooks`, `@/lib`)
+- Lightbox component for quick image previews
+- PageTransition component for smooth route animations using Framer Motion
 
 **Design System:**
 - Dark-first theme with biomechanical aesthetic inspired by Material Design
+- Solid dark background (no patterns) for optimal content focus
 - Typography: Inter and Roboto Mono from Google Fonts for technical precision
 - Responsive grid system: 3-column desktop, 2-column tablet, 1-column mobile
+- Titles displayed below each gallery item for easy identification
 - Consistent spacing using Tailwind's spacing primitives (2, 4, 6, 8, 12, 16, 24)
 - Custom CSS variables for theme colors in HSL format
 - Hover/active state elevations for interactive elements
+- Page transitions with subtle fade and vertical motion effects
 
 **State Management:**
 - TanStack Query handles server state with configured query client
@@ -54,12 +60,15 @@ Preferred communication style: Simple, everyday language.
 **API Endpoints:**
 - `GET /api/gallery` - Fetch all gallery items
 - `GET /api/gallery/:id` - Fetch single gallery item by ID
+- `PATCH /api/gallery/:id` - Update gallery item (title, description, mediaUrl) with validation
 
 **Storage Layer:**
-- `IStorage` interface defines contract for data operations
+- `IStorage` interface defines contract for data operations including CRUD operations
 - `MemStorage` class provides in-memory implementation with seeded sample data
+- Supports full CRUD: create, read, update (via updateGalleryItem method)
 - Designed for easy swap to database-backed storage (Drizzle ORM already configured)
 - Sample data includes prosthetics, neural interfaces, and theoretical articles
+- Updates persist in memory for the session
 
 ### Database Architecture
 
@@ -67,10 +76,11 @@ Preferred communication style: Simple, everyday language.
 - `users` table: Basic authentication structure (id, username, password)
 - `galleryItems` table: Core content storage with fields:
   - id (UUID primary key)
-  - title, description (text)
+  - title, description (text) - editable by users
   - mediaType (enum: 'image', 'video', 'article')
-  - mediaUrl, thumbnailUrl (external URLs)
+  - mediaUrl, thumbnailUrl (external URLs) - mediaUrl editable as "source"
   - order (varchar for custom sorting)
+- `updateGalleryItemSchema`: Partial schema for validating updates (all fields optional)
 
 **Database Configuration:**
 - PostgreSQL dialect configured via Neon serverless driver
