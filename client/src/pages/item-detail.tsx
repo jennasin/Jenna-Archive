@@ -44,7 +44,8 @@ export default function ItemDetail() {
   const updateMutation = useMutation({
     mutationFn: async (data: { title?: string; description?: string; mediaUrl?: string }) => {
       if (!itemId) throw new Error("No item ID");
-      return await apiRequest(`/api/gallery/${itemId}`, "PATCH", data);
+      const response = await apiRequest("PATCH", `/api/gallery/${itemId}`, data);
+      return await response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/gallery"] });
