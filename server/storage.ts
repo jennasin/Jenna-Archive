@@ -1,4 +1,4 @@
-import { type User, type InsertUser, type GalleryItem, type InsertGalleryItem } from "@shared/schema";
+import { type User, type InsertUser, type GalleryItem, type InsertGalleryItem, type UpdateGalleryItem } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -9,6 +9,7 @@ export interface IStorage {
   getAllGalleryItems(): Promise<GalleryItem[]>;
   getGalleryItem(id: string): Promise<GalleryItem | undefined>;
   createGalleryItem(item: InsertGalleryItem): Promise<GalleryItem>;
+  updateGalleryItem(id: string, updates: UpdateGalleryItem): Promise<GalleryItem | undefined>;
 }
 
 export class MemStorage implements IStorage {
@@ -135,6 +136,16 @@ export class MemStorage implements IStorage {
     const item: GalleryItem = { ...insertItem, id };
     this.galleryItems.set(id, item);
     return item;
+  }
+
+  async updateGalleryItem(id: string, updates: UpdateGalleryItem): Promise<GalleryItem | undefined> {
+    const existingItem = this.galleryItems.get(id);
+    if (!existingItem) {
+      return undefined;
+    }
+    const updatedItem: GalleryItem = { ...existingItem, ...updates };
+    this.galleryItems.set(id, updatedItem);
+    return updatedItem;
   }
 }
 

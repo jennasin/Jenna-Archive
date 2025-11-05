@@ -32,5 +32,8 @@ export const insertGalleryItemSchema = createInsertSchema(galleryItems).omit({
   id: true,
 });
 
+export const updateGalleryItemSchema = insertGalleryItemSchema.partial();
+
 export type InsertGalleryItem = z.infer<typeof insertGalleryItemSchema>;
+export type UpdateGalleryItem = z.infer<typeof updateGalleryItemSchema>;
 export type GalleryItem = typeof galleryItems.$inferSelect;
