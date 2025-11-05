@@ -39,6 +39,9 @@ export default function Header() {
                 About
               </button>
             </Link>
+            <div className="text-sm font-medium text-muted-foreground" data-testid="text-author-name">
+              Jenna Singh
+            </div>
           </nav>
         </div>
       </div>
