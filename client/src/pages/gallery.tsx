@@ -1,53 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { GalleryItem } from "@shared/schema";
-import { Film, FileText, Image, Search, X } from "lucide-react";
-import { useState, useMemo } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { Film, FileText, Image } from "lucide-react";
 import Lightbox from "@/components/lightbox";
+import backgroundImage from "@assets/generated_images/Dark_metallic_biomechanical_texture_de357ca1.png";
 
 export default function Gallery() {
   const { data: items, isLoading } = useQuery<GalleryItem[]>({
     queryKey: ["/api/gallery"],
   });
 
-  const [selectedFilter, setSelectedFilter] = useState<string>("all");
-  const [searchQuery, setSearchQuery] = useState("");
   const [lightboxItem, setLightboxItem] = useState<GalleryItem | null>(null);
-
-  const filteredItems = useMemo(() => {
-    if (!items) return [];
-
-    let result = items;
-
-    if (selectedFilter !== "all") {
-      result = result.filter((item) => item.mediaType === selectedFilter);
-    }
-
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      result = result.filter(
-        (item) =>
-          item.title.toLowerCase().includes(query) ||
-          item.description.toLowerCase().includes(query)
-      );
-    }
-
-    return result;
-  }, [items, selectedFilter, searchQuery]);
-
-  const filterOptions = [
-    { value: "all", label: "All", icon: null },
-    { value: "image", label: "Images", icon: Image },
-    { value: "video", label: "Videos", icon: Film },
-    { value: "article", label: "Articles", icon: FileText },
-  ];
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 md:px-8 py-16">
+      <div className="min-h-screen relative">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        />
+        <div className="relative container mx-auto px-4 md:px-8 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {Array.from({ length: 9 }).map((_, i) => (
               <div
@@ -63,60 +36,21 @@ export default function Gallery() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 md:px-8 py-16 md:py-24">
-        <div className="mb-8 md:mb-12 space-y-6">
-          <div className="relative max-w-xl">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search by title or description..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 pr-10"
-              data-testid="input-search"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                data-testid="button-clear-search"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2">
-            {filterOptions.map((option) => {
-              const Icon = option.icon;
-              const isActive = selectedFilter === option.value;
-              return (
-                <Button
-                  key={option.value}
-                  variant={isActive ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedFilter(option.value)}
-                  data-testid={`button-filter-${option.value}`}
-                  className="gap-2"
-                >
-                  {Icon && <Icon className="w-4 h-4" />}
-                  {option.label}
-                </Button>
-              );
-            })}
-          </div>
-        </div>
-
-        {filteredItems.length === 0 ? (
-          <div className="text-center py-16" data-testid="text-no-results">
-            <p className="text-lg text-muted-foreground">
-              No items found matching your criteria
+    <div className="min-h-screen relative">
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      />
+      <div className="relative container mx-auto px-4 md:px-8 py-16 md:py-24">
+        {!items || items.length === 0 ? (
+          <div className="text-center py-24">
+            <p className="text-muted-foreground text-lg">
+              No items in the archive yet
             </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {filteredItems.map((item) => {
+            {items.map((item) => {
               const handleClick = () => {
                 if (item.mediaType === "image") {
                   setLightboxItem(item);
