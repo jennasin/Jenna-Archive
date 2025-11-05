@@ -4,7 +4,6 @@ import { GalleryItem } from "@shared/schema";
 import { useState } from "react";
 import { Film, FileText, Image } from "lucide-react";
 import Lightbox from "@/components/lightbox";
-import backgroundImage from "@assets/generated_images/Dark_metallic_biomechanical_texture_de357ca1.png";
 
 export default function Gallery() {
   const { data: items, isLoading } = useQuery<GalleryItem[]>({
@@ -15,12 +14,8 @@ export default function Gallery() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen relative">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-        />
-        <div className="relative container mx-auto px-4 md:px-8 py-16">
+      <div className="min-h-screen bg-background">
+        <div className="container mx-auto px-4 md:px-8 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {Array.from({ length: 9 }).map((_, i) => (
               <div
@@ -36,12 +31,8 @@ export default function Gallery() {
   }
 
   return (
-    <div className="min-h-screen relative">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      />
-      <div className="relative container mx-auto px-4 md:px-8 py-16 md:py-24">
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 md:px-8 py-16 md:py-24">
         {!items || items.length === 0 ? (
           <div className="text-center py-24">
             <p className="text-muted-foreground text-lg">
