@@ -9,6 +9,7 @@ import PageTransition from "@/components/page-transition";
 import Gallery from "@/pages/gallery";
 import ItemDetail from "@/pages/item-detail";
 import About from "@/pages/about";
+import CuratorialStatement from "@/pages/curatorial-statement";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -17,6 +18,7 @@ function Router() {
       <Switch>
         <Route path="/" component={Gallery} />
         <Route path="/about" component={About} />
+        <Route path="/curatorial-statement" component={CuratorialStatement} />
         <Route path="/item/:id" component={ItemDetail} />
         <Route component={NotFound} />
       </Switch>

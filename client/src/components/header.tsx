@@ -29,6 +29,16 @@ export default function Header() {
                 Archive
               </button>
             </Link>
+            <Link href="/curatorial-statement" data-testid="link-nav-curatorial">
+              <button
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  location === "/curatorial-statement" ? "text-foreground" : "text-muted-foreground"
+                }`}
+                data-testid="button-nav-curatorial"
+              >
+                Curatorial Statement
+              </button>
+            </Link>
             <Link href="/about" data-testid="link-nav-about">
               <button
                 className={`text-sm font-medium transition-colors hover:text-primary ${
