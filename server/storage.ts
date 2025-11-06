@@ -49,12 +49,16 @@ export class MemStorage implements IStorage {
         source: "https://www.ted.com/talks/neil_harbisson_i_listen_to_color",
       },
       {
-        title: "The Cyborg Manifesto",
-        description: "Donna Haraway's groundbreaking 1985 essay explores the concept of the cyborg as a hybrid of machine and organism. This seminal work in feminist theory and science studies examines how technology blurs traditional boundaries between human and animal, organism and machine, physical and non-physical. Haraway argues that we are all cyborgs in a fundamental sense, already deeply integrated with our technologies. Read the full essay to explore these revolutionary ideas.",
-        mediaType: "article",
-        mediaUrl: "https://faculty.georgetown.edu/irvinem/theory/Haraway-CyborgManifesto-1.pdf",
-        thumbnailUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80",
+        title: "Open Bionics Hero Arm – Advanced Prosthetic Technology",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
+        mediaType: "image",
+        mediaUrl: "@assets/hero-arm.jpg",
+        thumbnailUrl: "@assets/hero-arm.jpg",
         order: "3",
+        subheading: "Metal and muscle align to rewrite what it means to be whole.",
+        aboutTheWork: "The Hero Arm, developed by Open Bionics, is one of the most advanced prosthetic arms available. Made using lightweight materials and customizable designs, it uses muscle sensors to control its movements. Each arm is built uniquely for the user, blending technology and personality in one device.",
+        relevanceToTheme: "This prosthetic represents how technology restores and redefines the human body. It's not only a replacement but an enhancement that turns limitation into empowerment. The Hero Arm reflects the evolution of the body as a customizable, mechanical, and expressive form of identity.",
+        source: "https://openbionics.com/hero-arm/",
       },
       {
         title: "Robotic Surgery: Precision Beyond Human Capability",
