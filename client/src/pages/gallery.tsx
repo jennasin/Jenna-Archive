@@ -1,16 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { GalleryItem } from "@shared/schema";
-import { useState } from "react";
 import { Film, FileText, Image } from "lucide-react";
-import Lightbox from "@/components/lightbox";
 
 export default function Gallery() {
   const { data: items, isLoading } = useQuery<GalleryItem[]>({
     queryKey: ["/api/gallery"],
   });
-
-  const [lightboxItem, setLightboxItem] = useState<GalleryItem | null>(null);
 
   if (isLoading) {
     return (
@@ -41,73 +37,39 @@ export default function Gallery() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {items.map((item) => {
-              const handleClick = () => {
-                if (item.mediaType === "image") {
-                  setLightboxItem(item);
-                }
-              };
-
-              return (
-                <div key={item.id}>
-                  <Link
-                    href={`/item/${item.id}`}
-                    onClick={(e) => {
-                      if (item.mediaType === "image") {
-                        e.preventDefault();
-                        handleClick();
-                      }
-                    }}
-                    data-testid={`link-item-${item.id}`}
+            {items.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`/item/${item.id}`}
+                  data-testid={`link-item-${item.id}`}
+                >
+                  <div
+                    className="group relative aspect-square overflow-hidden rounded-md bg-card cursor-pointer hover-elevate active-elevate-2 transition-transform duration-300"
+                    data-testid={`card-item-${item.id}`}
                   >
-                    <div
-                      className="group relative aspect-square overflow-hidden rounded-md bg-card cursor-pointer hover-elevate active-elevate-2 transition-transform duration-300"
-                      data-testid={`card-item-${item.id}`}
-                    >
-                      <img
-                        src={item.thumbnailUrl}
-                        alt={item.title}
-                        className="w-full h-full object-cover"
-                        data-testid={`img-thumbnail-${item.id}`}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="absolute bottom-0 left-0 right-0 p-6">
-                          <h3
-                            className="text-white font-medium text-lg leading-tight"
-                            data-testid={`text-title-hover-${item.id}`}
-                          >
-                            {item.title}
-                          </h3>
-                        </div>
-                      </div>
-                      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <MediaTypeBadge type={item.mediaType} />
+                    <img
+                      src={item.thumbnailUrl}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                      data-testid={`img-thumbnail-${item.id}`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <h3
+                          className="text-white font-medium text-lg leading-tight"
+                          data-testid={`text-title-${item.id}`}
+                        >
+                          {item.title}
+                        </h3>
                       </div>
                     </div>
-                  </Link>
-                  <h3 className="mt-3 text-sm font-medium text-foreground" data-testid={`text-title-${item.id}`}>
-                    {item.title}
-                  </h3>
-                </div>
-              );
-            })}
+                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <MediaTypeBadge type={item.mediaType} />
+                    </div>
+                  </div>
+                </Link>
+            ))}
           </div>
-        )}
-
-        {lightboxItem && items && (
-          <Lightbox
-            item={lightboxItem}
-            items={items}
-            onClose={() => setLightboxItem(null)}
-            onNavigate={(direction) => {
-              const currentIndex = items.findIndex((i) => i.id === lightboxItem.id);
-              const newIndex =
-                direction === "prev" ? currentIndex - 1 : currentIndex + 1;
-              if (newIndex >= 0 && newIndex < items.length) {
-                setLightboxItem(items[newIndex]);
-              }
-            }}
-          />
         )}
       </div>
     </div>

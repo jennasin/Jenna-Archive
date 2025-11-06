@@ -29,7 +29,6 @@ Machine Flesh Archive is a web-based gallery application by Jenna Singh explorin
 - Page components located in `client/src/pages/`: Gallery (home), ItemDetail (with edit form), About, NotFound
 - Layout components: Header (fixed navigation with author name) and Footer (removed)
 - Component aliases configured for clean imports (`@/components`, `@/hooks`, `@/lib`)
-- Lightbox component for quick image previews
 - PageTransition component for smooth route animations using Framer Motion
 
 **Design System:**
@@ -37,7 +36,7 @@ Machine Flesh Archive is a web-based gallery application by Jenna Singh explorin
 - Solid dark background (no patterns) for optimal content focus
 - Typography: Inter and Roboto Mono from Google Fonts for technical precision
 - Responsive grid system: 3-column desktop, 2-column tablet, 1-column mobile
-- Titles displayed below each gallery item for easy identification
+- Gallery thumbnails show titles only on hover (no persistent titles below images)
 - Consistent spacing using Tailwind's spacing primitives (2, 4, 6, 8, 12, 16, 24)
 - Custom CSS variables for theme colors in HSL format
 - Hover/active state elevations for interactive elements
