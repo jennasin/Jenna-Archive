@@ -216,6 +216,19 @@ export class MemStorage implements IStorage {
         relevanceToTheme: "The AR contact lens transforms sight into a hybrid of human and machine perception. It blurs the distinction between seeing and computing, turning the eye into both an organ and a digital display. Within Machine Flesh: The Human Body as Technology, this artifact represents the redefinition of sensory experience, where human vision evolves into an augmented interface for the modern world.",
         source: "https://www.mojo.vision/",
       },
+      {
+        title: "Apple Watch Series 9 – The Digital Pulse of the Body",
+        hoverTitle: "Apple Watch Series 9",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
+        mediaType: "image",
+        mediaUrl: "@assets/apple-watch-series-9.webp",
+        thumbnailUrl: "@assets/apple-watch-series-9.webp",
+        order: "17",
+        subheading: "Technology that listens to your heartbeat and mirrors your life.",
+        aboutTheWork: "The Apple Watch Series 9 is a wearable device that merges technology, health monitoring, and communication into one compact form. It tracks heart rate, blood oxygen, movement, and even sleep patterns while seamlessly connecting to the user's digital ecosystem. Acting as both a timepiece and a personal health assistant, it turns the wrist into a site of constant feedback and connection between the human body and data.",
+        relevanceToTheme: "The Apple Watch represents how technology embeds itself within everyday human life, transforming the body into a living interface. It shows how digital tools not only track our physical states but become extensions of our awareness and wellbeing. Within Machine Flesh: The Human Body as Technology, this artifact symbolizes the everyday evolution of the body into a networked, data-driven organism where self-knowledge and machine intelligence merge.",
+        source: "https://www.apple.com/apple-watch-series-9/",
+      },
     ];
 
     sampleItems.forEach((item) => {
