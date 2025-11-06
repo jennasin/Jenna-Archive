@@ -2,15 +2,14 @@
 
 ## Overview
 
-Machine Flesh Archive is a web-based gallery application by Jenna Singh exploring the intersection of human bodies and technology. The project presents a curated collection of images, videos, and articles about prosthetics, neural interfaces, and biomechanical enhancement through a dark, gallery-focused interface. Users can browse the archive and edit content directly through an intuitive editing interface.
+Machine Flesh Archive is a static web gallery by Jenna Singh exploring the intersection of human bodies and technology. The project presents a curated collection of 16 items including images, videos, and articles about prosthetics, neural interfaces, and biomechanical enhancement through a dark, gallery-focused interface. Users can browse the archive, view detailed information about each item, and read the curatorial statement.
 
 **Tech Stack:**
 - **Frontend**: React with TypeScript, Vite build system
 - **UI Framework**: shadcn/ui components with Radix UI primitives
 - **Styling**: Tailwind CSS with custom dark theme
-- **Backend**: Express.js server
-- **Database**: PostgreSQL via Neon serverless
-- **ORM**: Drizzle ORM
+- **Backend**: Express.js server (serves static files only)
+- **Data Storage**: Static JSON file (`public/data/gallery.json`)
 - **Routing**: Wouter (lightweight client-side routing)
 - **State Management**: TanStack Query (React Query)
 
@@ -26,7 +25,7 @@ Machine Flesh Archive is a web-based gallery application by Jenna Singh explorin
 **Component Structure:**
 - Uses React functional components with TypeScript throughout
 - UI components follow the shadcn/ui pattern - Radix UI primitives wrapped with custom styling
-- Page components located in `client/src/pages/`: Gallery (home), ItemDetail (with edit form), About, NotFound
+- Page components located in `client/src/pages/`: Gallery (home), ItemDetail, CuratorialStatement, About, NotFound
 - Layout components: Header (fixed navigation with author name) and Footer (removed)
 - Component aliases configured for clean imports (`@/components`, `@/hooks`, `@/lib`)
 - PageTransition component for smooth route animations using Framer Motion
@@ -43,58 +42,49 @@ Machine Flesh Archive is a web-based gallery application by Jenna Singh explorin
 - Page transitions with subtle fade and vertical motion effects
 
 **State Management:**
-- TanStack Query handles server state with configured query client
-- Custom query functions in `lib/queryClient.ts` for API communication
+- TanStack Query handles data fetching with configured query client
+- Custom query functions in `lib/queryClient.ts` for fetching static JSON data
+- Data is cached in memory after initial load for performance
 - No global client state - relies on React Query cache and URL parameters
 
 ### Backend Architecture
 
 **Server Structure:**
-- Express.js application with TypeScript
-- Modular route registration pattern in `server/routes.ts`
-- In-memory storage implementation with interface for future database migration
+- Express.js application with TypeScript (simplified to serve static files only)
+- No API routes - all data served as static JSON
 - Development mode includes Vite middleware for HMR
 - Production mode serves static built assets
+- Serves static assets from `/attached_assets` directory
+- Serves gallery data from `/data` directory (maps to `public/data`)
 
-**API Endpoints:**
-- `GET /api/gallery` - Fetch all gallery items
-- `GET /api/gallery/:id` - Fetch single gallery item by ID
-- `PATCH /api/gallery/:id` - Update gallery item (title, description, mediaUrl) with validation
+**Static Data:**
+- Gallery data stored in `public/data/gallery.json`
+- Contains 16 curated items with complete metadata
+- Each item includes: id, title, hoverTitle, mediaType, mediaUrl, thumbnailUrl, subheading, aboutTheWork, relevanceToTheme, source
+- Frontend fetches data once and caches it using TanStack Query
+- Images use `@assets/` prefix which gets replaced with `/attached_assets/` in frontend
 
-**Storage Layer:**
-- `IStorage` interface defines contract for data operations including CRUD operations
-- `MemStorage` class provides in-memory implementation with seeded sample data
-- Supports full CRUD: create, read, update (via updateGalleryItem method)
-- Designed for easy swap to database-backed storage (Drizzle ORM already configured)
-- Sample data includes prosthetics, neural interfaces, and theoretical articles
-- Updates persist in memory for the session
+### Gallery Content Structure
 
-### Database Architecture
+**Data Model:**
+Gallery items in `public/data/gallery.json` include:
+- `id` (string): Unique identifier (kebab-case slugs for URLs)
+- `title` (string): Full title displayed on detail page
+- `hoverTitle` (string|null): Shorter title shown on gallery hover
+- `description` (string): Legacy field (empty, replaced by aboutTheWork/relevanceToTheme)
+- `mediaType` (enum): 'image', 'video', or 'article'
+- `mediaUrl` (string): URL or @assets path to media
+- `thumbnailUrl` (string): URL or @assets path to thumbnail
+- `order` (string): Sort order for gallery display
+- `subheading` (string|null): Italic subheading on detail page
+- `aboutTheWork` (string|null): Description of the work
+- `relevanceToTheme` (string|null): Connection to Machine Flesh theme
+- `source` (string|null): Source URL reference
 
-**Schema Design (Drizzle ORM):**
-- `users` table: Basic authentication structure (id, username, password)
-- `galleryItems` table: Core content storage with fields:
-  - id (UUID primary key)
-  - title, description (text) - editable by users
-  - mediaType (enum: 'image', 'video', 'article')
-  - mediaUrl, thumbnailUrl (URLs or @assets paths for attached images)
-  - order (varchar for custom sorting)
-  - subheading (text, optional) - italic subheading displayed below title
-  - aboutTheWork (text, optional) - "About the Work" section content
-  - relevanceToTheme (text, optional) - "Relevance to Theme" section content
-  - source (text, optional) - source URL for the resource
-- `updateGalleryItemSchema`: Partial schema for validating updates (all fields optional)
-
-**Database Configuration:**
-- PostgreSQL dialect configured via Neon serverless driver
-- Migration files output to `./migrations` directory
-- Schema defined in `shared/schema.ts` for type sharing between client/server
-- Zod schemas generated from Drizzle tables for validation
-
-**Current State:**
-- Database schema defined but using in-memory storage
-- Ready for migration with `npm run db:push` command
-- Requires `DATABASE_URL` environment variable for database connection
+**Current Content:**
+- 16 curated items covering medical tech, robotics, AI, performance art, wearables
+- Includes video items (FKA Twigs, Arca, Neil Harbisson) using YouTube embeds
+- All items feature consistent structure with poetic subheadings and structured descriptions
 
 ### Build & Development
 
@@ -107,13 +97,13 @@ Machine Flesh Archive is a web-based gallery application by Jenna Singh explorin
 **Production Build:**
 - Client builds to `dist/public` via Vite
 - Server bundles to `dist/index.js` via esbuild
-- Single Node.js process serves both API and static files
+- Single Node.js process serves static files and JSON data
 - External packages not bundled (uses node_modules at runtime)
 
 **Type Safety:**
 - Strict TypeScript throughout
-- Shared schema types ensure client-server contract
-- Zod validation for runtime type checking on API boundaries
+- Shared schema types in `shared/schema.ts` for type consistency
+- JSON data structure matches TypeScript interfaces
 
 ## External Dependencies
 
@@ -124,11 +114,9 @@ Machine Flesh Archive is a web-based gallery application by Jenna Singh explorin
 - **class-variance-authority**: Type-safe variant styling for components
 - **Lucide React**: Icon library for UI elements
 
-### Database & ORM
-- **Drizzle ORM**: TypeScript ORM for PostgreSQL with migration support
-- **@neondatabase/serverless**: Neon serverless PostgreSQL driver
-- **drizzle-zod**: Automatic Zod schema generation from Drizzle tables
-- **connect-pg-simple**: PostgreSQL session store (configured but not actively used)
+### Data & Validation
+- **Zod**: Schema validation and type inference
+- Database packages (Drizzle, Neon) are installed but not actively used in static architecture
 
 ### Development Tools
 - **Vite**: Frontend build tool and dev server
@@ -136,11 +124,10 @@ Machine Flesh Archive is a web-based gallery application by Jenna Singh explorin
 - **tsx**: TypeScript execution for development server
 - **@replit/vite-plugin-***: Replit-specific development enhancements (error overlay, dev banner, cartographer)
 
-### Form & Data Management
-- **React Hook Form**: Form state management with `@hookform/resolvers` for validation
-- **TanStack Query**: Server state management and caching
-- **Zod**: Schema validation and type inference
-- **date-fns**: Date manipulation utilities
+### Data Management
+- **TanStack Query**: Client-side data fetching and caching
+- Data loaded from static JSON file on initial page load
+- Cached in memory for subsequent navigation
 
 ### Router
 - **Wouter**: Lightweight React router (~1.2KB) as alternative to React Router
