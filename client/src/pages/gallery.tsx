@@ -37,7 +37,12 @@ export default function Gallery() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {items.map((item) => (
+            {items.map((item) => {
+              const thumbnailSrc = item.thumbnailUrl.startsWith('@assets/')
+                ? item.thumbnailUrl.replace('@assets/', '/attached_assets/')
+                : item.thumbnailUrl;
+
+              return (
                 <Link
                   key={item.id}
                   href={`/item/${item.id}`}
@@ -48,7 +53,7 @@ export default function Gallery() {
                     data-testid={`card-item-${item.id}`}
                   >
                     <img
-                      src={item.thumbnailUrl}
+                      src={thumbnailSrc}
                       alt={item.title}
                       className="w-full h-full object-cover"
                       data-testid={`img-thumbnail-${item.id}`}
@@ -68,7 +73,8 @@ export default function Gallery() {
                     </div>
                   </div>
                 </Link>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

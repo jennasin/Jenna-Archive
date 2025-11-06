@@ -207,39 +207,80 @@ export default function ItemDetail() {
           ) : (
             <>
               <h1
-                className="text-3xl md:text-5xl font-bold mb-8 leading-tight tracking-tight"
+                className="text-3xl md:text-5xl font-bold mb-4 leading-tight tracking-tight font-serif italic"
                 data-testid="text-item-title"
               >
                 {item.title}
               </h1>
 
+              {item.subheading && (
+                <p
+                  className="text-lg md:text-xl text-muted-foreground mb-12 italic"
+                  data-testid="text-item-subheading"
+                >
+                  {item.subheading}
+                </p>
+              )}
+
               <div className="mb-12">
                 <MediaViewer item={item} />
               </div>
 
-              <div className="prose prose-invert max-w-none mb-8">
-                <p
-                  className="text-base md:text-lg leading-relaxed text-muted-foreground"
-                  data-testid="text-item-description"
-                >
-                  {item.description}
-                </p>
-              </div>
-
-              <div className="border-t border-border pt-6">
-                <p className="text-sm text-muted-foreground font-mono">
-                  <span className="font-medium">Source:</span>{" "}
-                  <a
-                    href={item.mediaUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline"
-                    data-testid="link-source"
+              {item.aboutTheWork && (
+                <div className="mb-8">
+                  <h2 className="text-xl font-semibold mb-3" data-testid="heading-about">
+                    About the Work:
+                  </h2>
+                  <p
+                    className="text-base md:text-lg leading-relaxed text-muted-foreground"
+                    data-testid="text-about"
                   >
-                    {item.mediaUrl}
-                  </a>
-                </p>
-              </div>
+                    {item.aboutTheWork}
+                  </p>
+                </div>
+              )}
+
+              {item.relevanceToTheme && (
+                <div className="mb-8">
+                  <h2 className="text-xl font-semibold mb-3" data-testid="heading-relevance">
+                    Relevance to Theme:
+                  </h2>
+                  <p
+                    className="text-base md:text-lg leading-relaxed text-muted-foreground"
+                    data-testid="text-relevance"
+                  >
+                    {item.relevanceToTheme}
+                  </p>
+                </div>
+              )}
+
+              {!item.aboutTheWork && !item.relevanceToTheme && item.description && (
+                <div className="prose prose-invert max-w-none mb-8">
+                  <p
+                    className="text-base md:text-lg leading-relaxed text-muted-foreground"
+                    data-testid="text-item-description"
+                  >
+                    {item.description}
+                  </p>
+                </div>
+              )}
+
+              {item.source && (
+                <div className="border-t border-border pt-6">
+                  <p className="text-sm text-muted-foreground font-mono">
+                    <span className="font-medium">Source:</span>{" "}
+                    <a
+                      href={item.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline"
+                      data-testid="link-source"
+                    >
+                      {item.source}
+                    </a>
+                  </p>
+                </div>
+              )}
             </>
           )}
 
@@ -353,10 +394,14 @@ function MediaViewer({ item }: { item: GalleryItem }) {
     );
   }
 
+  const imageSrc = item.mediaUrl.startsWith('@assets/')
+    ? item.mediaUrl.replace('@assets/', '/attached_assets/')
+    : item.mediaUrl;
+
   return (
     <div className="relative w-full">
       <img
-        src={item.mediaUrl}
+        src={imageSrc}
         alt={item.title}
         className="w-full h-auto rounded-md"
         data-testid="img-full"

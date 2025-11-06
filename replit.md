@@ -77,8 +77,12 @@ Machine Flesh Archive is a web-based gallery application by Jenna Singh explorin
   - id (UUID primary key)
   - title, description (text) - editable by users
   - mediaType (enum: 'image', 'video', 'article')
-  - mediaUrl, thumbnailUrl (external URLs) - mediaUrl editable as "source"
+  - mediaUrl, thumbnailUrl (URLs or @assets paths for attached images)
   - order (varchar for custom sorting)
+  - subheading (text, optional) - italic subheading displayed below title
+  - aboutTheWork (text, optional) - "About the Work" section content
+  - relevanceToTheme (text, optional) - "Relevance to Theme" section content
+  - source (text, optional) - source URL for the resource
 - `updateGalleryItemSchema`: Partial schema for validating updates (all fields optional)
 
 **Database Configuration:**

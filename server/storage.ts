@@ -25,12 +25,16 @@ export class MemStorage implements IStorage {
   private seedGalleryItems() {
     const sampleItems: InsertGalleryItem[] = [
       {
-        title: "Prosthetic Limbs and Human Enhancement",
-        description: "Modern prosthetics have evolved beyond simple replacement devices. Today's advanced prosthetics incorporate sensors, AI, and neural interfaces that can restore—and in some cases exceed—natural human capabilities. This raises profound questions about the boundaries between human and machine, and whether enhanced abilities fundamentally alter what it means to be human. As technology advances, we must consider: at what point does augmentation become transformation?",
+        title: "Da Vinci Surgical Robot",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
         mediaType: "image",
-        mediaUrl: "https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=1200&q=80",
-        thumbnailUrl: "https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=600&q=80",
+        mediaUrl: "@assets/davin_1762396738074.avif",
+        thumbnailUrl: "@assets/davin_1762396738074.avif",
         order: "1",
+        subheading: "In the quiet rhythm of the operating room, steel and flesh move as one.",
+        aboutTheWork: "The Da Vinci Surgical System is a robotic-assisted platform used in operating rooms around the world. It allows surgeons to perform minimally invasive procedures with four robotic arms that mimic human movement but with greater precision and control. The system translates a surgeon's hand motions into micro-movements inside the patient's body, combining human intuition with robotic accuracy.",
+        relevanceToTheme: "This machine represents the fusion of human skill and mechanical enhancement. It embodies the posthuman idea that our tools are not separate from us but extensions of our capabilities. The surgeon and robot work together as one body, illustrating how technology can amplify the human experience rather than replace it.",
+        source: "https://www.intuitive.com/en-us/products-and-services/da-vinci",
       },
       {
         title: "Neural Interfaces: Bridging Mind and Machine",
@@ -100,7 +104,14 @@ export class MemStorage implements IStorage {
 
     sampleItems.forEach((item) => {
       const id = randomUUID();
-      const galleryItem: GalleryItem = { ...item, id };
+      const galleryItem: GalleryItem = {
+        ...item,
+        id,
+        subheading: item.subheading ?? null,
+        aboutTheWork: item.aboutTheWork ?? null,
+        relevanceToTheme: item.relevanceToTheme ?? null,
+        source: item.source ?? null,
+      };
       this.galleryItems.set(id, galleryItem);
     });
   }
@@ -133,7 +144,14 @@ export class MemStorage implements IStorage {
 
   async createGalleryItem(insertItem: InsertGalleryItem): Promise<GalleryItem> {
     const id = randomUUID();
-    const item: GalleryItem = { ...insertItem, id };
+    const item: GalleryItem = {
+      ...insertItem,
+      id,
+      subheading: insertItem.subheading ?? null,
+      aboutTheWork: insertItem.aboutTheWork ?? null,
+      relevanceToTheme: insertItem.relevanceToTheme ?? null,
+      source: insertItem.source ?? null,
+    };
     this.galleryItems.set(id, item);
     return item;
   }

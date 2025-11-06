@@ -26,6 +26,10 @@ export const galleryItems = pgTable("gallery_items", {
   mediaUrl: text("media_url").notNull(),
   thumbnailUrl: text("thumbnail_url").notNull(),
   order: varchar("order").notNull(),
+  subheading: text("subheading"),
+  aboutTheWork: text("about_the_work"),
+  relevanceToTheme: text("relevance_to_theme"),
+  source: text("source"),
 });
 
 export const insertGalleryItemSchema = createInsertSchema(galleryItems).omit({
