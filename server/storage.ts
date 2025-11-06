@@ -138,6 +138,19 @@ export class MemStorage implements IStorage {
         relevanceToTheme: "Sophia represents how human qualities like emotion, empathy, and intelligence can be replicated through technology. She questions what defines humanity when machines can mimic our faces, voices, and responses. Within the theme Machine Flesh: The Human Body as Technology, Sophia stands as both mirror and creation—showing that as we design machines in our image, we also redefine what it means to be human.",
         source: "https://www.hansonrobotics.com/sophia/",
       },
+      {
+        title: "FKA Twigs – Cellophane (Cyborg Fashion Aesthetic)",
+        hoverTitle: "Cyborg Fashion Music Video",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
+        mediaType: "image",
+        mediaUrl: "@assets/cellophane-fka-twigs.jpg",
+        thumbnailUrl: "@assets/cellophane-fka-twigs.jpg",
+        order: "10",
+        subheading: "In beauty and motion, the body becomes both ornament and machine.",
+        aboutTheWork: "The Cellophane music video by FKA Twigs combines performance art, digital effects, and body movement to explore vulnerability and transformation. The artist presents her body as both sensual and mechanical, surrounded by shimmering, metallic visuals that echo cyborg aesthetics. The piece uses digital post-production and stylized costuming to merge natural and artificial forms. It turns performance into an exploration of how technology reshapes identity, beauty, and emotion.",
+        relevanceToTheme: "This work reflects the way technology infiltrates art, identity, and human expression. FKA Twigs embodies the posthuman body as a living interface — graceful yet digitally enhanced. The video challenges how we define authenticity and femininity in a world where beauty and body are mediated through technology. Within Machine Flesh: The Human Body as Technology, it represents the poetic side of human-machine fusion, where transformation is both mechanical and emotional.",
+        source: "https://www.youtube.com/watch?v=YkLjqFpBh84&list=RDYkLjqFpBh84&start_radio=1",
+      },
     ];
 
     sampleItems.forEach((item) => {
