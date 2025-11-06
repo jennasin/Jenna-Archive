@@ -190,6 +190,19 @@ export class MemStorage implements IStorage {
         relevanceToTheme: "Nonbinary represents the evolution of identity in a technological age. Arca challenges the notion of a fixed body, instead presenting the human form as adaptable and digitally extended. Within Machine Flesh: The Human Body as Technology, this piece symbolizes how technology enables the reconstruction of selfhood and expression, dissolving the boundaries between human, machine, and art.",
         source: "https://www.youtube.com/watch?v=gfGz4MTQ28I&list=RDgfGz4MTQ28I&start_radio=1",
       },
+      {
+        title: "Neuralink – The Brain–Computer Interface",
+        hoverTitle: "Neuralink Brain Chip",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
+        mediaType: "image",
+        mediaUrl: "@assets/neuralink-chip.jpg",
+        thumbnailUrl: "@assets/neuralink-chip.jpg",
+        order: "15",
+        subheading: "When thought becomes data, consciousness learns to speak binary.",
+        aboutTheWork: "Neuralink is a neurotechnology company founded by Elon Musk that develops brain–computer interfaces designed to connect human neurons directly with digital devices. The implant reads neural activity and translates it into computer commands, allowing users to control machines using only their thoughts. The company envisions future applications for restoring mobility, treating neurological disorders, and potentially enhancing human cognition through technology.",
+        relevanceToTheme: "Neuralink represents one of the most direct integrations of human biology and machine intelligence. It dissolves the boundary between mind and technology, suggesting a future where thought itself becomes a form of interface. Within Machine Flesh: The Human Body as Technology, Neuralink captures the evolution of the brain into both biological organ and digital processor, symbolizing the next stage of human augmentation.",
+        source: "https://www.neuralink.com/",
+      },
     ];
 
     sampleItems.forEach((item) => {
