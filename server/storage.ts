@@ -164,6 +164,19 @@ export class MemStorage implements IStorage {
         relevanceToTheme: "The AI Nurse Chatbot redefines the act of caregiving by merging human compassion with machine intelligence. It raises questions about emotional authenticity when empathy is simulated by code. Within Machine Flesh: The Human Body as Technology, this artifact symbolizes how machines are not only physical extensions of the body but also emotional ones, showing that technology can serve as a bridge between data and feeling.",
         source: "https://www.youper.ai/",
       },
+      {
+        title: "Anouk Wipprecht – Cyborg Fashion Design",
+        hoverTitle: "Cyborg Fashion by Anouk Wipprecht",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
+        mediaType: "image",
+        mediaUrl: "@assets/anouk-wipprecht-spider-dress.jpg",
+        thumbnailUrl: "@assets/anouk-wipprecht-spider-dress.jpg",
+        order: "13",
+        subheading: "When clothing thinks, the body becomes a living machine.",
+        aboutTheWork: "Anouk Wipprecht is a Dutch fashion-tech designer known for creating interactive garments that combine robotics, sensors, and fashion. Her designs, such as the Spider Dress, respond to the wearer's environment using motion and proximity sensors that trigger mechanical reactions. Each piece turns the human body into a responsive interface, where technology becomes both armor and expression.",
+        relevanceToTheme: "Wipprecht's cyborg fashion transforms the idea of clothing into technology that interacts, defends, and communicates. It blurs the line between the human body and machine intelligence, merging art, science, and identity. Within Machine Flesh: The Human Body as Technology, her work reflects how the body becomes a site of innovation—one that fuses aesthetic beauty with robotic autonomy.",
+        source: "https://www.anoukwipprecht.nl/",
+      },
     ];
 
     sampleItems.forEach((item) => {
