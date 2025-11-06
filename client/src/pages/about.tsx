@@ -41,10 +41,7 @@ export default function About() {
                 developments reveal these categories to be less distinct than we once thought.
               </p>
               <p>
-                When a prosthetic limb responds to
-                neural signals, when genetic engineering rewrites DNA—in these moments, the machine
-                and the flesh are not separate entities. They form a hybrid system that challenges
-                our traditional understanding of what it means to be human.
+               
               </p>
             </section>
 
