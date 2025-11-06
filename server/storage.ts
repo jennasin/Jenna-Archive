@@ -87,12 +87,17 @@ export class MemStorage implements IStorage {
         source: "http://stelarc.org/_activity-20244.php",
       },
       {
-        title: "Artificial Organs: Mechanical Life Support",
-        description: "From pacemakers to artificial hearts, mechanical devices now perform functions once exclusive to biological organs. These life-sustaining technologies challenge traditional definitions of life and death. When vital functions are maintained by machines, questions arise about the essence of human life. Are we still 'ourselves' when our heartbeat is regulated by circuitry rather than biology? The integration of artificial organs into the body reveals the increasingly mechanical nature of biological existence.",
+        title: "ReWalk Robotics Exoskeleton Suit – Redefining Mobility",
+        hoverTitle: "ReWalk Robotics Exoskeleton Suit",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
         mediaType: "image",
-        mediaUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80",
-        thumbnailUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80",
+        mediaUrl: "@assets/rewalk-exoskeleton.jpg",
+        thumbnailUrl: "@assets/rewalk-exoskeleton.jpg",
         order: "6",
+        subheading: "In each powered step, machine and body remember how to move together.",
+        aboutTheWork: "The ReWalk Exoskeleton is a wearable robotic suit that helps people with spinal cord injuries walk again. Using sensors and battery-powered motors, it mimics natural leg movements and supports standing, walking, and climbing. Developed by ReWalk Robotics, it transforms the wearer's movement from dependent to autonomous.",
+        relevanceToTheme: "This exoskeleton represents the body's partnership with technology to regain independence. It blurs the boundary between organic and mechanical movement, showing how machines can extend human ability rather than replace it. In this union, mobility becomes a shared act between human intention and robotic strength.",
+        source: "https://rewalk.com/",
       },
       {
         title: "Wearable Technology and Quantified Self",
