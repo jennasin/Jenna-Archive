@@ -74,12 +74,17 @@ export class MemStorage implements IStorage {
         source: "https://www.tesla.com/models?utm_source=chatgpt.com",
       },
       {
-        title: "Exoskeletons and Physical Augmentation",
-        description: "Industrial and medical exoskeletons represent a new category of wearable machines that amplify human strength and endurance. These devices blur the line between tool and extension of the body, creating a hybrid entity that is neither purely human nor purely machine. Workers can lift hundreds of pounds; paralyzed individuals can walk. These technologies force us to reconsider: where does the body end and the tool begin?",
+        title: "Stelarc – Third Arm (Robotic Prosthesis Performance, 1980)",
+        hoverTitle: "Stelarc - Third Arm",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
         mediaType: "image",
-        mediaUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80",
-        thumbnailUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80",
+        mediaUrl: "@assets/stelarc-third-arm.jpg",
+        thumbnailUrl: "@assets/stelarc-third-arm.jpg",
         order: "5",
+        subheading: "A new limb grows from circuitry, extending thought into motion.",
+        aboutTheWork: "The Third Arm is a robotic extension designed and worn by performance artist Stelarc. Attached to his body and controlled by electrical signals from his muscles, the arm operates independently from his biological limbs. Through live performances, Stelarc uses the arm to question the limitations of the human body.",
+        relevanceToTheme: "This piece visualizes the concept of machine flesh directly. By adding a functional robotic limb, Stelarc turns his own body into a hybrid organism—part man, part machine. His work challenges the idea that humanity ends at the skin, presenting the body as a site of technological evolution.",
+        source: "http://stelarc.org/_activity-20244.php",
       },
       {
         title: "Artificial Organs: Mechanical Life Support",
