@@ -41,7 +41,7 @@ export class MemStorage implements IStorage {
         description: "", // Will be replaced by aboutTheWork and relevanceToTheme
         mediaType: "video",
         mediaUrl: "https://www.youtube.com/watch?v=ygRNoieAnzI",
-        thumbnailUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+        thumbnailUrl: "@assets/neil-harbisson.jpg",
         order: "2",
         subheading: "Through frequency and code, he hears what the human eye cannot see.",
         aboutTheWork: "Neil Harbisson is a British artist and activist recognized as the world's first legally acknowledged cyborg. Born colorblind, he implanted an antenna in his skull that translates color frequencies into audible vibrations. Through this extension, Harbisson \"hears\" colors, experiencing a blended form of human and digital perception.",
