@@ -177,6 +177,19 @@ export class MemStorage implements IStorage {
         relevanceToTheme: "Wipprecht's cyborg fashion transforms the idea of clothing into technology that interacts, defends, and communicates. It blurs the line between the human body and machine intelligence, merging art, science, and identity. Within Machine Flesh: The Human Body as Technology, her work reflects how the body becomes a site of innovation—one that fuses aesthetic beauty with robotic autonomy.",
         source: "https://www.anoukwipprecht.nl/",
       },
+      {
+        title: "Arca – Nonbinary (Music Video, 2020)",
+        hoverTitle: "Arca – Nonbinary Music Video",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
+        mediaType: "image",
+        mediaUrl: "@assets/arca-nonbinary.webp",
+        thumbnailUrl: "@assets/arca-nonbinary.webp",
+        order: "14",
+        subheading: "The body as code, rewritten without boundaries.",
+        aboutTheWork: "Arca's Nonbinary music video merges digital imagery, performance art, and electronic sound to explore identity beyond gender and form. In the video, Arca appears as a posthuman figure—part flesh, part machine—embodying transformation and self-creation. The aesthetic blends metallic textures, fluid motion, and futuristic visuals, presenting the body as both organic and synthetic.",
+        relevanceToTheme: "Nonbinary represents the evolution of identity in a technological age. Arca challenges the notion of a fixed body, instead presenting the human form as adaptable and digitally extended. Within Machine Flesh: The Human Body as Technology, this piece symbolizes how technology enables the reconstruction of selfhood and expression, dissolving the boundaries between human, machine, and art.",
+        source: "https://www.youtube.com/watch?v=Haq5nT0z3dE",
+      },
     ];
 
     sampleItems.forEach((item) => {
