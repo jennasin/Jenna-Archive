@@ -28,8 +28,8 @@ export class MemStorage implements IStorage {
         title: "Da Vinci Surgical Robot",
         description: "", // Will be replaced by aboutTheWork and relevanceToTheme
         mediaType: "image",
-        mediaUrl: "@assets/cmr-surgical-versius-clinical-setup-4-arms-00013-2.jpg_1762397469572.jpg",
-        thumbnailUrl: "@assets/cmr-surgical-versius-clinical-setup-4-arms-00013-2.jpg_1762397469572.jpg",
+        mediaUrl: "@assets/davinci-robot.jpg",
+        thumbnailUrl: "@assets/davinci-robot.jpg",
         order: "1",
         subheading: "In the quiet rhythm of the operating room, steel and flesh move as one.",
         aboutTheWork: "The Da Vinci Surgical System is a robotic-assisted platform used in operating rooms around the world. It allows surgeons to perform minimally invasive procedures with four robotic arms that mimic human movement but with greater precision and control. The system translates a surgeon's hand motions into micro-movements inside the patient's body, combining human intuition with robotic accuracy.",
