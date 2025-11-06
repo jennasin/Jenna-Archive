@@ -49,7 +49,7 @@ export class MemStorage implements IStorage {
         source: "https://www.ted.com/talks/neil_harbisson_i_listen_to_color",
       },
       {
-        title: "Open Bionics Hero Arm – Advanced Prosthetic Technology",
+        title: "Open Bionics Hero Arm",
         description: "", // Will be replaced by aboutTheWork and relevanceToTheme
         mediaType: "image",
         mediaUrl: "@assets/hero-arm.jpg",
