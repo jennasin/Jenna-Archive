@@ -1,73 +1,24 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useRoute, Link } from "wouter";
-import { GalleryItem, updateGalleryItemSchema } from "@shared/schema";
-import { ArrowLeft, ChevronLeft, ChevronRight, Edit, Save, X } from "lucide-react";
+import { GalleryItem } from "@shared/schema";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { useState } from "react";
-import { apiRequest, queryClient } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
+import { fetchGalleryData, getGalleryItem } from "@/lib/queryClient";
 
 export default function ItemDetail() {
   const [, params] = useRoute("/item/:id");
   const itemId = params?.id;
-  const [isEditing, setIsEditing] = useState(false);
-  const { toast } = useToast();
 
   const { data: items } = useQuery<GalleryItem[]>({
-    queryKey: ["/api/gallery"],
+    queryKey: ["gallery"],
+    queryFn: fetchGalleryData,
   });
 
-  const { data: item, isLoading } = useQuery<GalleryItem>({
-    queryKey: ["/api/gallery", itemId],
+  const { data: item, isLoading } = useQuery<GalleryItem | undefined>({
+    queryKey: ["gallery-item", itemId],
+    queryFn: () => getGalleryItem(itemId!),
     enabled: !!itemId,
   });
-
-  const form = useForm({
-    resolver: zodResolver(updateGalleryItemSchema),
-    defaultValues: {
-      title: item?.title || "",
-      description: item?.description || "",
-      mediaUrl: item?.mediaUrl || "",
-    },
-    values: {
-      title: item?.title || "",
-      description: item?.description || "",
-      mediaUrl: item?.mediaUrl || "",
-    },
-  });
-
-  const updateMutation = useMutation({
-    mutationFn: async (data: { title?: string; description?: string; mediaUrl?: string }) => {
-      if (!itemId) throw new Error("No item ID");
-      const response = await apiRequest("PATCH", `/api/gallery/${itemId}`, data);
-      return await response.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/gallery"] });
-      queryClient.invalidateQueries({ queryKey: ["/api/gallery", itemId] });
-      setIsEditing(false);
-      toast({
-        title: "Success",
-        description: "Item updated successfully",
-      });
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to update item",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const onSubmit = (data: { title?: string; description?: string; mediaUrl?: string }) => {
-    updateMutation.mutate(data);
-  };
 
   if (isLoading || !item) {
     return (
@@ -109,103 +60,9 @@ export default function ItemDetail() {
                 Back to Gallery
               </Button>
             </Link>
-
-            {!isEditing ? (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsEditing(true)}
-                data-testid="button-edit"
-              >
-                <Edit className="w-4 h-4 mr-2" />
-                Edit
-              </Button>
-            ) : (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setIsEditing(false);
-                  form.reset();
-                }}
-                data-testid="button-cancel-edit"
-              >
-                <X className="w-4 h-4 mr-2" />
-                Cancel
-              </Button>
-            )}
           </div>
 
-          {isEditing ? (
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                <FormField
-                  control={form.control}
-                  name="title"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Title</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Enter title..."
-                          {...field}
-                          data-testid="input-title"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="description"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Description</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="How does this tie into the theme?..."
-                          rows={6}
-                          {...field}
-                          data-testid="input-description"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="mediaUrl"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Source URL</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Enter source URL..."
-                          {...field}
-                          data-testid="input-source"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button
-                  type="submit"
-                  disabled={updateMutation.isPending}
-                  data-testid="button-save"
-                >
-                  <Save className="w-4 h-4 mr-2" />
-                  {updateMutation.isPending ? "Saving..." : "Save Changes"}
-                </Button>
-              </form>
-            </Form>
-          ) : (
-            <>
+          <>
               <h1
                 className="text-3xl md:text-5xl font-bold mb-4 leading-tight tracking-tight font-serif italic"
                 data-testid="text-item-title"
@@ -282,7 +139,6 @@ export default function ItemDetail() {
                 </div>
               )}
             </>
-          )}
 
           <div className="mt-16 pt-8 border-t border-border flex items-center justify-between gap-4">
             {prevItem ? (

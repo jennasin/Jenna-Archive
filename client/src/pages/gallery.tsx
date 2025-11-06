@@ -2,10 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { GalleryItem } from "@shared/schema";
 import { Film, FileText, Image } from "lucide-react";
+import { fetchGalleryData } from "@/lib/queryClient";
 
 export default function Gallery() {
   const { data: items, isLoading } = useQuery<GalleryItem[]>({
-    queryKey: ["/api/gallery"],
+    queryKey: ["gallery"],
+    queryFn: fetchGalleryData,
   });
 
   if (isLoading) {
