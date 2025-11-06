@@ -142,8 +142,8 @@ export class MemStorage implements IStorage {
         title: "FKA Twigs – Cellophane (Cyborg Fashion Aesthetic)",
         hoverTitle: "Cyborg Fashion Music Video",
         description: "", // Will be replaced by aboutTheWork and relevanceToTheme
-        mediaType: "image",
-        mediaUrl: "@assets/cellophane-fka-twigs.jpg",
+        mediaType: "video",
+        mediaUrl: "https://www.youtube.com/embed/YkLjqFpBh84",
         thumbnailUrl: "@assets/cellophane-fka-twigs.jpg",
         order: "10",
         subheading: "In beauty and motion, the body becomes both ornament and machine.",
