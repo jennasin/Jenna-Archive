@@ -250,8 +250,9 @@ function MediaViewer({ item }: { item: GalleryItem }) {
     );
   }
 
+  const baseUrl = import.meta.env.BASE_URL || '/';
   const imageSrc = item.mediaUrl.startsWith('@assets/')
-    ? item.mediaUrl.replace('@assets/', '/attached_assets/')
+    ? item.mediaUrl.replace('@assets/', `${baseUrl}attached_assets/`).replace(/\/+/g, '/')
     : item.mediaUrl;
 
   return (

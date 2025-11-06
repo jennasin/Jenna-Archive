@@ -101,6 +101,17 @@ The `dist` folder contains:
 
 This is a **100% static site** with no server-side code - perfect for GitHub Pages!
 
+## Base URL Configuration
+
+The application automatically adapts to different base URLs:
+- All asset paths (images, videos, data) respect `import.meta.env.BASE_URL`
+- This means the site works correctly whether deployed to:
+  - Root domain: `https://username.github.io/` (use `--base=/`)
+  - Repository subdirectory: `https://username.github.io/repo-name/` (use `--base=/repo-name/`)
+  - Custom domain: `https://yourdomain.com/` (use `--base=/`)
+
+No code changes needed - just set the correct `--base` flag during build!
+
 ## Local Preview of Production Build
 
 To preview the production build locally:

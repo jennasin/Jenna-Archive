@@ -8,7 +8,10 @@ export async function fetchGalleryData(): Promise<GalleryItem[]> {
     return cachedGalleryData;
   }
 
-  const response = await fetch("/data/gallery.json");
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  const dataUrl = `${baseUrl}data/gallery.json`.replace(/\/+/g, '/');
+  
+  const response = await fetch(dataUrl);
   if (!response.ok) {
     throw new Error(`Failed to fetch gallery data: ${response.statusText}`);
   }

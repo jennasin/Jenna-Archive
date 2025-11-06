@@ -8,10 +8,11 @@ Machine Flesh Archive is a static web gallery by Jenna Singh exploring the inter
 - **Frontend**: React with TypeScript, Vite build system
 - **UI Framework**: shadcn/ui components with Radix UI primitives
 - **Styling**: Tailwind CSS with custom dark theme
-- **Backend**: Express.js server (serves static files only)
-- **Data Storage**: Static JSON file (`public/data/gallery.json`)
+- **Development Server**: Minimal Express wrapper around Vite (development only)
+- **Data Storage**: Static JSON file (`client/public/data/gallery.json`)
 - **Routing**: Wouter (lightweight client-side routing)
 - **State Management**: TanStack Query (React Query)
+- **Deployment**: Pure static site, deployable to GitHub Pages
 
 ## User Preferences
 
@@ -47,22 +48,27 @@ Machine Flesh Archive is a static web gallery by Jenna Singh exploring the inter
 - Data is cached in memory after initial load for performance
 - No global client state - relies on React Query cache and URL parameters
 
-### Backend Architecture
+### Static Architecture
 
-**Server Structure:**
-- Express.js application with TypeScript (simplified to serve static files only)
-- No API routes - all data served as static JSON
-- Development mode includes Vite middleware for HMR
-- Production mode serves static built assets
-- Serves static assets from `/attached_assets` directory
-- Serves gallery data from `/data` directory (maps to `public/data`)
+**Development Server:**
+- Minimal Express.js wrapper around Vite (development only, not deployed)
+- Server folder contains thin wrapper that launches Vite dev server
+- No API routes - all data served statically by Vite
+- Vite serves files from `client/public/` directory automatically
 
 **Static Data:**
-- Gallery data stored in `public/data/gallery.json`
+- Gallery data stored in `client/public/data/gallery.json`
+- Assets stored in `client/public/attached_assets/`
 - Contains 16 curated items with complete metadata
 - Each item includes: id, title, hoverTitle, mediaType, mediaUrl, thumbnailUrl, subheading, aboutTheWork, relevanceToTheme, source
 - Frontend fetches data once and caches it using TanStack Query
 - Images use `@assets/` prefix which gets replaced with `/attached_assets/` in frontend
+
+**Deployment:**
+- Build output: Pure static HTML/CSS/JS in `dist/` folder
+- No Node.js server required in production
+- Ready for GitHub Pages, Netlify, Vercel, or any static host
+- See `DEPLOYMENT.md` for detailed deployment instructions
 
 ### Gallery Content Structure
 
@@ -95,10 +101,11 @@ Gallery items in `public/data/gallery.json` include:
 - Path aliases resolve at build time and IDE level
 
 **Production Build:**
-- Client builds to `dist/public` via Vite
-- Server bundles to `dist/index.js` via esbuild
-- Single Node.js process serves static files and JSON data
-- External packages not bundled (uses node_modules at runtime)
+- Static site builds to `dist/` folder via `npx vite build`
+- Output contains pure HTML, CSS, JavaScript, and assets
+- No server-side code in production build
+- Deployable to any static hosting platform (GitHub Pages, Netlify, Vercel, etc.)
+- Use `npx vite build --base=/repo-name/` for GitHub Pages repository deployment
 
 **Type Safety:**
 - Strict TypeScript throughout

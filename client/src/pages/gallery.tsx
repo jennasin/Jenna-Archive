@@ -40,8 +40,9 @@ export default function Gallery() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {items.map((item) => {
+              const baseUrl = import.meta.env.BASE_URL || '/';
               const thumbnailSrc = item.thumbnailUrl.startsWith('@assets/')
-                ? item.thumbnailUrl.replace('@assets/', '/attached_assets/')
+                ? item.thumbnailUrl.replace('@assets/', `${baseUrl}attached_assets/`).replace(/\/+/g, '/')
                 : item.thumbnailUrl;
 
               return (
