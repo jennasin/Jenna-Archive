@@ -181,8 +181,8 @@ export class MemStorage implements IStorage {
         title: "Arca – Nonbinary (Music Video, 2020)",
         hoverTitle: "Arca – Nonbinary Music Video",
         description: "", // Will be replaced by aboutTheWork and relevanceToTheme
-        mediaType: "image",
-        mediaUrl: "@assets/arca-nonbinary.webp",
+        mediaType: "video",
+        mediaUrl: "https://www.youtube.com/embed/Haq5nT0z3dE",
         thumbnailUrl: "@assets/arca-nonbinary.webp",
         order: "14",
         subheading: "The body as code, rewritten without boundaries.",
