@@ -113,12 +113,17 @@ export class MemStorage implements IStorage {
         source: "https://www.cochlear.com/us/en/home/products-and-accessories/cochlear-nucleus-system/nucleus-sound-processors/compare-nucleus-sound-processors",
       },
       {
-        title: "CRISPR and Genetic Engineering",
-        description: "Gene editing technologies like CRISPR-Cas9 enable direct modification of human DNA. This represents perhaps the most fundamental way that technology can transform the human body—not by adding external devices, but by rewriting the biological code itself. The ability to edit genes raises unprecedented ethical questions about human enhancement, designer babies, and the future of human evolution. When we can engineer our own biology, what remains of 'natural' humanity?",
+        title: "Stelarc – Prosthetic Head (AI Self-Portrait Project, 2003)",
+        hoverTitle: "Stelarc: Prosthetic Head",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
         mediaType: "image",
-        mediaUrl: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&q=80",
-        thumbnailUrl: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80",
+        mediaUrl: "@assets/prosthetic-head.jpg",
+        thumbnailUrl: "@assets/prosthetic-head.jpg",
         order: "8",
+        subheading: "When a machine learns to speak in your voice, where does the self end?",
+        aboutTheWork: "The Prosthetic Head is an interactive robotic sculpture created by artist Stelarc. The work features a life-sized 3D model of the artist's own head that can speak and respond to human input through artificial intelligence. It blurs the distinction between the artist's physical self and his digital double. The Prosthetic Head combines performance, robotics, and AI, creating an uncanny conversation between flesh and software.",
+        relevanceToTheme: "This piece embodies the posthuman condition where identity extends beyond the biological body. By replicating his own head through technology, Stelarc challenges ideas of consciousness, autonomy, and existence. It raises questions about what remains 'human' when the body and mind can be re-created by machines. Within the theme Machine Flesh: The Human Body as Technology, this artifact perfectly captures the merging of human identity and artificial intelligence as a living dialogue between self and system.",
+        source: "http://stelarc.org/_activity-20244.php",
       },
       {
         title: "Sophia the Robot – The Face of Artificial Empathy",
