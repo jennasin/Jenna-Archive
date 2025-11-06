@@ -21,6 +21,7 @@ export type User = typeof users.$inferSelect;
 export const galleryItems = pgTable("gallery_items", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
+  hoverTitle: text("hover_title"), // Optional shorter title for gallery hover
   description: text("description").notNull(),
   mediaType: text("media_type").notNull(), // 'image', 'video', 'article'
   mediaUrl: text("media_url").notNull(),

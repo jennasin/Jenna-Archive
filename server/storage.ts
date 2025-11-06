@@ -61,12 +61,17 @@ export class MemStorage implements IStorage {
         source: "https://openbionics.com/hero-arm/",
       },
       {
-        title: "Robotic Surgery: Precision Beyond Human Capability",
-        description: "Surgical robots like the da Vinci system demonstrate how machines can extend human capabilities in medical contexts. These systems provide surgeons with enhanced precision, stability, and vision far beyond what human hands alone can achieve. The paradox is striking: to heal human bodies, we increasingly rely on mechanical precision that surpasses our own biological limitations. This technological mediation raises questions about the role of human skill and judgment in an age of automated precision.",
-        mediaType: "video",
-        mediaUrl: "https://www.youtube.com/watch?v=0XdC1HUp-rU",
-        thumbnailUrl: "https://images.unsplash.com/photo-1582719471137-c3967ffb1c42?w=600&q=80",
+        title: "Tesla Model S Plaid - The Self-Driving Machine",
+        hoverTitle: "Tesla Model S Plaid",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
+        mediaType: "image",
+        mediaUrl: "@assets/tesla-model-s.jpg",
+        thumbnailUrl: "@assets/tesla-model-s.jpg",
         order: "4",
+        subheading: "In motion without touch, the machine learns what it means to move for us.",
+        aboutTheWork: "The Tesla Model S Plaid is a fully electric vehicle equipped with autopilot features and advanced AI systems. Designed for speed, control, and automation, it represents the intersection of engineering and artificial intelligence. Its self-driving technology allows the car to navigate, brake, and steer with minimal human input.",
+        relevanceToTheme: "The Tesla shifts the idea of control from human hands to machine intelligence. It explores how technology now acts as both body and mind, performing actions once defined as uniquely human. The car becomes a mechanical extension of the driver, symbolizing how humans and machines share agency in modern life.",
+        source: "https://www.tesla.com/models?utm_source=chatgpt.com",
       },
       {
         title: "Exoskeletons and Physical Augmentation",
@@ -115,6 +120,7 @@ export class MemStorage implements IStorage {
       const galleryItem: GalleryItem = {
         ...item,
         id,
+        hoverTitle: item.hoverTitle ?? null,
         subheading: item.subheading ?? null,
         aboutTheWork: item.aboutTheWork ?? null,
         relevanceToTheme: item.relevanceToTheme ?? null,
@@ -155,6 +161,7 @@ export class MemStorage implements IStorage {
     const item: GalleryItem = {
       ...insertItem,
       id,
+      hoverTitle: insertItem.hoverTitle ?? null,
       subheading: insertItem.subheading ?? null,
       aboutTheWork: insertItem.aboutTheWork ?? null,
       relevanceToTheme: insertItem.relevanceToTheme ?? null,

@@ -64,7 +64,7 @@ export default function Gallery() {
                           className="text-white font-medium text-lg leading-tight"
                           data-testid={`text-title-${item.id}`}
                         >
-                          {item.title}
+                          {item.hoverTitle || item.title}
                         </h3>
                       </div>
                     </div>
