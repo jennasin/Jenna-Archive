@@ -100,12 +100,17 @@ export class MemStorage implements IStorage {
         source: "https://rewalk.com/",
       },
       {
-        title: "Wearable Technology and Quantified Self",
-        description: "Fitness trackers, smartwatches, and health monitors transform the body into a source of data. Every heartbeat, step, and sleep cycle becomes quantifiable information. This technological mediation of bodily experience represents a fundamental shift in how we understand and relate to our own biology. The body becomes an object of measurement and optimization, a machine to be monitored and improved through technological intervention.",
+        title: "Cochlear Nucleus 8 – Hearing Through Technology",
+        hoverTitle: "Cochlear Nucleus 8 Implant",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
         mediaType: "image",
-        mediaUrl: "https://images.unsplash.com/photo-1576243345690-4e4b79b63288?w=1200&q=80",
-        thumbnailUrl: "https://images.unsplash.com/photo-1576243345690-4e4b79b63288?w=600&q=80",
+        mediaUrl: "@assets/cochlear-implant.jpg",
+        thumbnailUrl: "@assets/cochlear-implant.jpg",
         order: "7",
+        subheading: "Sound becomes electricity, and technology speaks the language of the body.",
+        aboutTheWork: "The Cochlear Nucleus 8 is an advanced hearing implant that converts sound into electrical signals directly transmitted to the auditory nerve. It allows individuals with profound hearing loss to perceive sound in new, digitally mediated ways. Through its mix of biological and electronic processes, it creates a unique sensory experience.",
+        relevanceToTheme: "This implant demonstrates how technology merges seamlessly with the human nervous system. It redefines hearing as both a biological and technological act, expanding what \"natural\" senses mean. The Cochlear implant shows that being human can include mechanical perception and digital sensation.",
+        source: "https://www.cochlear.com/us/en/home/products-and-accessories/cochlear-nucleus-system/nucleus-sound-processors/compare-nucleus-sound-processors",
       },
       {
         title: "CRISPR and Genetic Engineering",
