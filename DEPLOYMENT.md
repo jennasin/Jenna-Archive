@@ -19,6 +19,8 @@ npx vite build
 # This creates a production-ready static site in the `dist` folder
 ```
 
+**Important:** The project includes a `404.html` file in `client/public/` that handles client-side routing on GitHub Pages. This file is automatically included in your build and fixes the common SPA 404 issue when navigating directly to routes.
+
 For deployment to `https://username.github.io/repo-name/`, build with a base path:
 
 ```bash
