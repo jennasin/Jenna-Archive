@@ -151,6 +151,19 @@ export class MemStorage implements IStorage {
         relevanceToTheme: "This work reflects the way technology infiltrates art, identity, and human expression. FKA Twigs embodies the posthuman body as a living interface — graceful yet digitally enhanced. The video challenges how we define authenticity and femininity in a world where beauty and body are mediated through technology. Within Machine Flesh: The Human Body as Technology, it represents the poetic side of human-machine fusion, where transformation is both mechanical and emotional.",
         source: "https://www.youtube.com/watch?v=YkLjqFpBh84&list=RDYkLjqFpBh84&start_radio=1",
       },
+      {
+        title: "AI Nurse Chatbot – Care in the Age of Automation",
+        hoverTitle: "AI Nurse Chatbot",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
+        mediaType: "image",
+        mediaUrl: "@assets/ai-nurse-chatbot.png",
+        thumbnailUrl: "@assets/ai-nurse-chatbot.png",
+        order: "11",
+        subheading: "A digital voice that listens, learns, and heals.",
+        aboutTheWork: "The AI Nurse Chatbot, modeled after platforms like Youper Health AI, is an artificial intelligence system designed to assist patients with emotional and health-related needs. It uses conversational algorithms to provide guidance, monitor wellbeing, and simulate human-like empathy in care settings. This digital assistant reflects the growing trend of automation in healthcare, where machines participate directly in human care and communication.",
+        relevanceToTheme: "The AI Nurse Chatbot redefines the act of caregiving by merging human compassion with machine intelligence. It raises questions about emotional authenticity when empathy is simulated by code. Within Machine Flesh: The Human Body as Technology, this artifact symbolizes how machines are not only physical extensions of the body but also emotional ones, showing that technology can serve as a bridge between data and feeling.",
+        source: "https://www.youper.ai/",
+      },
     ];
 
     sampleItems.forEach((item) => {
