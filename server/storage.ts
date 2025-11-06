@@ -37,12 +37,16 @@ export class MemStorage implements IStorage {
         source: "https://www.intuitive.com/en-us/products-and-services/da-vinci",
       },
       {
-        title: "Neural Interfaces: Bridging Mind and Machine",
-        description: "Brain-computer interfaces represent one of the most direct integrations of human biology with technology. From helping paralyzed individuals regain mobility to enabling new forms of communication, these devices create unprecedented connections between neural activity and digital systems. The implications extend beyond medical applications—these technologies challenge our understanding of consciousness, identity, and the nature of thought itself. What happens to human agency when our thoughts can directly control machines?",
-        mediaType: "image",
-        mediaUrl: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&q=80",
-        thumbnailUrl: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&q=80",
+        title: "Neil Harbisson - The Cyborg Artist",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
+        mediaType: "video",
+        mediaUrl: "https://www.youtube.com/watch?v=ygRNoieAnzI",
+        thumbnailUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
         order: "2",
+        subheading: "Through frequency and code, he hears what the human eye cannot see.",
+        aboutTheWork: "Neil Harbisson is a British artist and activist recognized as the world's first legally acknowledged cyborg. Born colorblind, he implanted an antenna in his skull that translates color frequencies into audible vibrations. Through this extension, Harbisson \"hears\" colors, experiencing a blended form of human and digital perception.",
+        relevanceToTheme: "Harbisson's body challenges the boundary between biology and technology. His self-modification shows how technology can enhance human senses and create new forms of awareness. This piece supports the idea that being human now includes merging with machines to extend our perception of reality.",
+        source: "https://www.ted.com/talks/neil_harbisson_i_listen_to_color",
       },
       {
         title: "The Cyborg Manifesto",
