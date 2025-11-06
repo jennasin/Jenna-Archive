@@ -121,12 +121,17 @@ export class MemStorage implements IStorage {
         order: "8",
       },
       {
-        title: "Virtual Reality and Embodied Experience",
-        description: "VR technology creates immersive experiences that can override our physical senses. In virtual environments, we can inhabit different bodies, experience impossible physics, and transcend the limitations of our biological form. This technological mediation of perception challenges our understanding of embodiment and presence. If we can feel present in a virtual body, what does this reveal about the relationship between consciousness and physical form?",
+        title: "Sophia the Robot – The Face of Artificial Empathy",
+        hoverTitle: "Sophia the Robot",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
         mediaType: "image",
-        mediaUrl: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=1200&q=80",
-        thumbnailUrl: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=600&q=80",
+        mediaUrl: "@assets/sophia-robot.jpg",
+        thumbnailUrl: "@assets/sophia-robot.jpg",
         order: "9",
+        subheading: "Her silicon smile reflects our search for emotion within the mechanical.",
+        aboutTheWork: "Sophia is a humanoid robot created by Hanson Robotics in 2016, designed to simulate conversation and facial expressions. She uses artificial intelligence and machine learning to interact naturally with people, responding with realistic gestures and tone. Sophia has become a cultural icon for AI and robotics, often appearing at global conferences and interviews. Her design challenges traditional ideas of interaction by giving human-like communication to a machine.",
+        relevanceToTheme: "Sophia represents how human qualities like emotion, empathy, and intelligence can be replicated through technology. She questions what defines humanity when machines can mimic our faces, voices, and responses. Within the theme Machine Flesh: The Human Body as Technology, Sophia stands as both mirror and creation—showing that as we design machines in our image, we also redefine what it means to be human.",
+        source: "https://www.hansonrobotics.com/sophia/",
       },
     ];
 
