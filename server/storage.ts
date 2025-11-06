@@ -203,6 +203,19 @@ export class MemStorage implements IStorage {
         relevanceToTheme: "Neuralink represents one of the most direct integrations of human biology and machine intelligence. It dissolves the boundary between mind and technology, suggesting a future where thought itself becomes a form of interface. Within Machine Flesh: The Human Body as Technology, Neuralink captures the evolution of the brain into both biological organ and digital processor, symbolizing the next stage of human augmentation.",
         source: "https://www.neuralink.com/",
       },
+      {
+        title: "Mojo Vision – The Augmented Reality Contact Lens",
+        hoverTitle: "Mojo Vision AR Contact Lens",
+        description: "", // Will be replaced by aboutTheWork and relevanceToTheme
+        mediaType: "image",
+        mediaUrl: "@assets/mojo-vision-ar-lens.jpg",
+        thumbnailUrl: "@assets/mojo-vision-ar-lens.jpg",
+        order: "16",
+        subheading: "Vision enhanced, reality redesigned.",
+        aboutTheWork: "The Mojo Vision augmented reality contact lens is a revolutionary wearable that integrates digital information directly into the human eye. It contains a tiny microdisplay, sensors, and wireless communication that project data, images, and navigation overlays into the wearer's visual field. The lens allows users to access information hands-free, blending real-world vision with virtual interfaces in a fully immersive way.",
+        relevanceToTheme: "The AR contact lens transforms sight into a hybrid of human and machine perception. It blurs the distinction between seeing and computing, turning the eye into both an organ and a digital display. Within Machine Flesh: The Human Body as Technology, this artifact represents the redefinition of sensory experience, where human vision evolves into an augmented interface for the modern world.",
+        source: "https://www.mojo.vision/",
+      },
     ];
 
     sampleItems.forEach((item) => {
