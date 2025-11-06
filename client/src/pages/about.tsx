@@ -7,7 +7,7 @@ export default function About() {
             className="text-4xl md:text-6xl font-bold mb-6 leading-tight tracking-tight"
             data-testid="text-about-title"
           >
-            About This Archive
+        More About This Archive
           </h1>
 
           <div className="space-y-8 text-base md:text-lg leading-relaxed text-muted-foreground">
@@ -25,7 +25,7 @@ export default function About() {
                 This archive explores the increasingly blurred boundary between human biology and
                 technology. From prosthetic limbs that restore lost function to neural interfaces
                 that create direct pathways between brain and computer, we are witnessing an
-                unprecedented integration of mechanical systems with organic life.
+                interesting integration of mechanical systems with organic life.
               </p>
             </section>
 
@@ -34,14 +34,14 @@ export default function About() {
                 Machine Flesh
               </h2>
               <p className="mb-4">
-                The title "Machine Flesh" deliberately juxtaposes two seemingly incompatible
+                The title "Machine Flesh" intentionally juxtaposes two seemingly incompatible
                 concepts. Machines are typically understood as rigid, predictable, and
                 manufactured—products of human design. Flesh is soft, vulnerable, and
                 organic—evolved rather than designed. Yet contemporary medical and technological
                 developments reveal these categories to be less distinct than we once thought.
               </p>
               <p>
-                When a pacemaker regulates your heartbeat, when a prosthetic limb responds to
+                When a prosthetic limb responds to
                 neural signals, when genetic engineering rewrites DNA—in these moments, the machine
                 and the flesh are not separate entities. They form a hybrid system that challenges
                 our traditional understanding of what it means to be human.
